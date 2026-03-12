@@ -1,1 +1,253 @@
-<p>hello world!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thousand Gardens</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg:       #2a2a2a;
+      --bg-light: #333333;
+      --text:     #f0ede8;
+      --muted:    #a09a92;
+      --accent:   #c8b89a;
+      --divider:  #444444;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Lora', Georgia, serif;
+      min-height: 100vh;
+    }
+
+    /* ── STICKY SITE HEADER ──────────────────────────── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--bg);
+      animation: fadeDown 0.8s ease both;
+      /* subtle shadow appears on scroll via JS class */
+      transition: box-shadow 0.3s ease;
+    }
+
+    .site-header.scrolled {
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.45);
+    }
+
+    /* ── HEADER ─────────────────────────────────────── */
+    header {
+      text-align: center;
+      padding: 2rem 1.5rem 0;
+    }
+
+    h1 {
+      font-family: 'Comfortaa', cursive;
+      font-weight: 700;
+      font-size: clamp(2rem, 6vw, 4rem);
+      letter-spacing: 0.04em;
+      color: var(--text);
+      line-height: 1.1;
+    }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: clamp(1.2rem, 4vw, 3rem);
+      padding: 1.2rem 1.5rem 1.4rem;
+    }
+
+    nav a {
+      font-family: 'Comfortaa', cursive;
+      font-weight: 400;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: lowercase;
+      color: var(--muted);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 3px;
+      transition: color 0.25s ease;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--text);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    nav a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+
+    /* ── DIVIDER ─────────────────────────────────────── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--divider);
+    }
+
+    /* ── MAIN CONTENT ────────────────────────────────── */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 5rem;
+      animation: fadeUp 0.9s 0.3s ease both;
+    }
+
+    /* ── FIGURE / IMAGE ──────────────────────────────── */
+    figure {
+      margin: 0 0 2.8rem;
+    }
+
+    .image-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background-color: var(--bg-light);
+      border: 1px solid var(--divider);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-family: 'Comfortaa', cursive;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* swap this <div> for a real <img> when ready */
+    .image-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    figcaption {
+      margin-top: 0.85rem;
+      font-family: 'Lora', Georgia, serif;
+      font-style: italic;
+      font-size: 0.88rem;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.55;
+    }
+
+    /* ── DESCRIPTIVE TEXT ────────────────────────────── */
+    .description {
+      border-top: 1px solid var(--divider);
+      padding-top: 2.4rem;
+    }
+
+    .description p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text);
+      max-width: 68ch;
+      margin: 0 auto 1.4rem;
+    }
+
+    .description p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ── ANIMATIONS ──────────────────────────────────── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 480px) {
+      nav {
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="site-header">
+    <header>
+      <h1>Thousand Gardens</h1>
+    </header>
+
+    <nav aria-label="Main navigation">
+      <a href="#music">music</a>
+      <a href="#friends">friends</a>
+      <a href="#industry">industry</a>
+      <a href="#related">related</a>
+    </nav>
+
+    <div class="divider" role="separator"></div>
+  </div>
+
+  <main>
+
+    <figure>
+      <!-- Replace the div below with: <img src="your-image.jpg" alt="Your descriptive alt text" /> -->
+      <div class="image-placeholder" role="img" aria-label="Featured image placeholder">
+        <img src="images/coastlinescover.jpg" alt="Cover art for the music album Coastlines by Thousand Gardens" />
+      </div>
+      <figcaption>
+        Coastlines, the third album from Thousand Gardens. June 2025.
+      </figcaption>
+    </figure>
+
+    <section class="description" aria-label="Image description">
+      <p>
+        Coastlines is available on Bandcamp and all streaming services.
+      </p>
+      <p>
+        An homage to vintage IDM, following in the footsteps of Boards of Canada, Tycho, Future Sound of London, Plaid, and more. 100% human made.
+      </p>
+    </section>
+
+  </main>
+
+  <script>
+    const siteHeader = document.querySelector('.site-header');
+    window.addEventListener('scroll', () => {
+      siteHeader.classList.toggle('scrolled', window.scrollY > 10);
+    }, { passive: true });
+  </script>
+
+</body>
+</html>
