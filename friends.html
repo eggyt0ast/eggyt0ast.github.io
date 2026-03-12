@@ -43,7 +43,6 @@
       z-index: 100;
       background-color: var(--bg);
       animation: fadeDown 0.8s ease both;
-      /* subtle shadow appears on scroll via JS class */
       transition: box-shadow 0.3s ease;
     }
 
@@ -168,61 +167,45 @@
       animation: fadeUp 0.9s 0.3s ease both;
     }
 
-    /* ── FIGURE / IMAGE ──────────────────────────────── */
-    figure {
-      margin: 0 0 2.8rem;
-    }
-
-    .image-placeholder {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      background-color: var(--bg-light);
-      border: 1px solid var(--divider);
+    /* ── FRIENDS LIST ────────────────────────────────── */
+    .friends-list {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--muted);
-      font-family: 'Comfortaa', cursive;
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
-      overflow: hidden;
-      position: relative;
+      flex-direction: column;
+      gap: 0;
     }
 
-    /* swap this <div> for a real <img> when ready */
-    .image-placeholder img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+    .friend-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--divider);
     }
 
-    figcaption {
-      margin-top: 0.85rem;
-      font-family: 'Lora', Georgia, serif;
-      font-style: italic;
-      font-size: 0.88rem;
-      color: var(--muted);
-      text-align: center;
-      line-height: 1.55;
-    }
-
-    /* ── DESCRIPTIVE TEXT ────────────────────────────── */
-    .description {
+    .friend-entry:first-child {
       border-top: 1px solid var(--divider);
-      padding-top: 2.4rem;
     }
 
-    .description p {
+    .friend-entry p {
       font-size: 1.05rem;
       line-height: 1.85;
       color: var(--text);
       max-width: 68ch;
-      margin: 0 auto 1.4rem;
     }
 
-    .description p:last-child {
-      margin-bottom: 0;
+    .friend-entry a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .friend-entry a:hover {
+      color: var(--text);
+    }
+
+    .friend-link {
+      display: inline-block;
+      margin-top: 0.6rem;
+      font-family: 'Comfortaa', cursive;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
     }
 
     /* ── ANIMATIONS ──────────────────────────────────── */
@@ -273,44 +256,39 @@
   </div>
 
   <main>
+    <div class="friends-list">
 
-    <section>
-	Brandon, AKA Kid Lightbulbs, makes sprawling, self-reflective music with piano, some guitar, and more with a unique mix of sparse yet full composition. He also writes about the music industry as an indepedent artist with a slant towards the technology available to musicians. He's also made a faircamp site and an unstream app!
+      <article class="friend-entry">
+        <p>Brandon, AKA Kid Lightbulbs, makes sprawling, self-reflective music with piano, some guitar, and more with a unique mix of sparse yet full composition. He also writes about the music industry as an independent artist with a slant towards the technology available to musicians. He's also made a faircamp site and an unstream app!</p>
+        <a class="friend-link" href="https://kidlightbulbs.com/" target="_blank" rel="noopener noreferrer">kidlightbulbs.com</a>
+      </article>
 
-https://kidlightbulbs.com/
+      <article class="friend-entry">
+        <p>Dave Hawkins runs a number of useful tools from his website, including an automated playlist for Threads musicians. Plus, a bike advocate and all-around cool guy.</p>
+        <a class="friend-link" href="https://www.iamdavehawkins.com/" target="_blank" rel="noopener noreferrer">iamdavehawkins.com</a>
+      </article>
 
-<hr width="600px" />
+      <article class="friend-entry">
+        <p>Drew Stephenson, often seen on socials as @thedeaddetectivesclub, is a pretty great guy. And he has a website with his music on it! If you're into politically-relevant orchestral funk, give it a listen. Even if you're not.</p>
+        <a class="friend-link" href="https://blinddrewsmusic.blogspot.com/" target="_blank" rel="noopener noreferrer">blinddrewsmusic.blogspot.com</a>
+      </article>
 
-Dave Hawkins runs a number of useful tools from his website, including an automated playlist for Threads musicians. Plus, a bike advocate and all-around cool guy.
+      <article class="friend-entry">
+        <p>Maneframe is a positive force in the indie music scene, and makes music, playlists, merch, and more. Also many "dad jokes." Definitely worth getting to know.</p>
+        <a class="friend-link" href="https://maneframe.net/" target="_blank" rel="noopener noreferrer">maneframe.net</a>
+      </article>
 
-https://www.iamdavehawkins.com/
+      <article class="friend-entry">
+        <p>ilyBBY is a community organizer, music producer, and writer that is a courageous voice for musicians. Their focus is on queerness, disability, love, and entrepreneurship. Plus, good tunes!</p>
+        <a class="friend-link" href="https://ilybby.com/" target="_blank" rel="noopener noreferrer">ilybby.com</a>
+      </article>
 
-<hr width="600px" />
+      <article class="friend-entry">
+        <p>Patrick Hardy makes great music and has a great website.</p>
+        <a class="friend-link" href="https://patrickhardy.live/" target="_blank" rel="noopener noreferrer">patrickhardy.live</a>
+      </article>
 
-Drew Stephenson, often seen on socials as @thedeaddetectivesclub, is a pretty great guy. And he has a website with his music on it! If you're into politically-relevant orchestral funk, give it a listen. Even if you're not.
-
-https://blinddrewsmusic.blogspot.com/
-
-<hr width="600px" />
-
-Maneframe is a positive force in the indie music scene, and makes music, playlists, merch, and more. Also many "dad jokes." Definitely worth getting to know.
-
-https://maneframe.net/
-
-<hr width="600px" />
-
-ilyBBY is a community organizer, music producer, and writer that is a courageous voice for musicians. Their focus is on queerness, disability, love, and entrepreneurship. Plus, good tunes!
-
-https://ilybby.com/
-
-<hr width="600px" />
-
-Patrick Hardy makes great music and has a great website:
-
-https://patrickhardy.live/
-
-</section>
-
+    </div>
   </main>
 
   <script>
@@ -319,6 +297,6 @@ https://patrickhardy.live/
       siteHeader.classList.toggle('scrolled', window.scrollY > 10);
     }, { passive: true });
   </script>
-<script src="https://www.webringthemusic.info/embed.js"></script>
+  <script src="https://www.webringthemusic.info/embed.js"></script>
 </body>
 </html>
