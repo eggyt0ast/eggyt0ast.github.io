@@ -53,8 +53,26 @@
 
     /* ── HEADER ─────────────────────────────────────── */
     header {
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       padding: 2rem 1.5rem 0;
+    }
+
+    .header-spacer {
+      flex: 1;
+    }
+
+    .header-title {
+      flex: 0 0 auto;
+      text-align: center;
+    }
+
+    .header-actions {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
     }
 
     h1 {
@@ -64,6 +82,17 @@
       letter-spacing: 0.04em;
       color: var(--text);
       line-height: 1.1;
+    }
+
+    h1 a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    h1 a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+      border-radius: 2px;
     }
 
     /* ── SOCIAL ICONS ────────────────────────────────── */
@@ -121,7 +150,7 @@
       position: absolute;
       bottom: 0;
       left: 0;
-	  width: 100%;
+      width: 100%;
       height: 1px;
       background: var(--accent);
       opacity: 0;
@@ -164,7 +193,6 @@
 
     .image-placeholder {
       width: 100%;
-     
       background-color: var(--bg-light);
       border: 1px solid var(--divider);
       display: flex;
@@ -237,7 +265,17 @@
 
   <div class="site-header">
     <header>
-      <h1>Thousand Gardens</h1>
+      <div class="header-spacer" aria-hidden="true"></div>
+      <div class="header-title">
+        <h1><a href="/">Thousand Gardens</a></h1>
+      </div>
+      <div class="header-actions">
+        <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+        <stripe-buy-button
+          buy-button-id="buy_btn_1TAYAbGwb1qpOj2Jio99O2gL"
+          publishable-key="pk_live_51PQIbiGwb1qpOj2JbAcO2O9LgY6IjyU6GtmI3CD5LsT2T5DKLnBPQINTIH62eCrmo0AVsgAV2TPpjAspF1Acvu5K00HV5U223S"
+        ></stripe-buy-button>
+      </div>
     </header>
 
     <div class="social-icons" aria-label="Social media links">
