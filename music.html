@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thousand Gardens</title>
+  <title>Thousand Gardens – Music</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
@@ -25,9 +25,7 @@
       --divider:  #444444;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       background-color: var(--bg);
@@ -50,7 +48,6 @@
       box-shadow: 0 2px 20px rgba(0, 0, 0, 0.45);
     }
 
-    /* ── HEADER ─────────────────────────────────────── */
     header {
       text-align: center;
       padding: 2rem 1.5rem 0;
@@ -129,8 +126,7 @@
     nav a::after {
       content: '';
       position: absolute;
-      bottom: 0;
-      left: 0;
+      bottom: 0; left: 0;
       width: 100%;
       height: 1px;
       background: var(--accent);
@@ -138,13 +134,8 @@
       transition: opacity 0.3s ease;
     }
 
-    nav a:hover {
-      color: var(--text);
-    }
-
-    nav a:hover::after {
-      opacity: 1;
-    }
+    nav a:hover { color: var(--text); }
+    nav a:hover::after { opacity: 1; }
 
     nav a:focus-visible {
       outline: 2px solid var(--accent);
@@ -152,14 +143,14 @@
       border-radius: 2px;
     }
 
-    /* ── DIVIDER ─────────────────────────────────────── */
+    /* ── HEADER DIVIDER ──────────────────────────────── */
     .divider {
       width: 100%;
       height: 1px;
       background: var(--divider);
     }
 
-    /* ── MAIN CONTENT ────────────────────────────────── */
+    /* ── MAIN ────────────────────────────────────────── */
     main {
       max-width: 900px;
       margin: 0 auto;
@@ -167,45 +158,78 @@
       animation: fadeUp 0.9s 0.3s ease both;
     }
 
-    /* ── FRIENDS LIST ────────────────────────────────── */
-    .friends-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+    /* ── MUSIC SECTION ───────────────────────────────── */
+    .music-section {
+      padding: 2.8rem 0;
     }
 
-    .friend-entry {
-      padding: 2rem 0;
-      border-bottom: 1px solid var(--divider);
+    /* Title of each release */
+    .music-section h2 {
+      font-family: 'Comfortaa', cursive;
+      font-weight: 600;
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      letter-spacing: 0.04em;
+      color: var(--text);
+      margin-bottom: 1.4rem;
     }
 
-    .friend-entry:first-child {
-      border-top: 1px solid var(--divider);
+    /* Two-column intro: first paragraph left, image right */
+    .music-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+      margin-bottom: 2rem;
     }
 
-    .friend-entry p {
+    .music-intro .intro-text {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text);
+    }
+
+    .music-intro figure {
+      margin: 0;
+    }
+
+    .music-intro figure img {
+      width: 100%;
+      display: block;
+      border: 1px solid var(--divider);
+    }
+
+    .music-intro figure figcaption {
+      margin-top: 0.6rem;
+      font-style: italic;
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* Additional paragraphs below the intro row */
+    .music-body p {
       font-size: 1.05rem;
       line-height: 1.85;
       color: var(--text);
       max-width: 68ch;
+      margin-bottom: 1.2rem;
     }
 
-    .friend-entry a {
-      color: var(--accent);
-      text-decoration: none;
-      transition: color 0.2s ease;
+    .music-body p:last-child {
+      margin-bottom: 0;
     }
 
-    .friend-entry a:hover {
-      color: var(--text);
+    /* ── SCROLL-TRIGGERED DIVIDER ────────────────────── */
+    .scroll-divider {
+      height: 1px;
+      background: var(--divider);
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.7s ease;
     }
 
-    .friend-link {
-      display: inline-block;
-      margin-top: 0.6rem;
-      font-family: 'Comfortaa', cursive;
-      font-size: 0.85rem;
-      letter-spacing: 0.06em;
+    .scroll-divider.visible {
+      transform: scaleX(1);
     }
 
     /* ── ANIMATIONS ──────────────────────────────────── */
@@ -220,9 +244,11 @@
     }
 
     /* ── RESPONSIVE ──────────────────────────────────── */
-    @media (max-width: 480px) {
-      nav {
-        gap: 1rem;
+    @media (max-width: 600px) {
+      nav { gap: 1rem; }
+
+      .music-intro {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -246,6 +272,7 @@
     </div>
 
     <nav aria-label="Main navigation">
+      <a href="index.html">home</a>
       <a href="music.html">music</a>
       <a href="friends.html">friends</a>
       <a href="industry.html">industry</a>
@@ -256,17 +283,98 @@
   </div>
 
   <main>
-    <div class="music-page">
-	<p>A list and description of previous albums, singles, and similar will appear here.
-	</div>
+
+    <!-- ── COASTLINES ─────────────────────────────────── -->
+    <section class="music-section">
+      <h2>Coastlines</h2>
+      <div class="music-intro">
+        <p class="intro-text">The third Thousand Gardens album, Coastlines is somber and contemplative, with four distinct sections. Artwork by me, including my own photographs and design, and a number of supporting music videos available on Youtube.</p>
+        <figure>
+          <img src="images/coastlinescover.jpg" alt="Cover art for Coastlines by Thousand Gardens" />
+          <figcaption>Released June 2025</figcaption>
+        </figure>
+        </div>
+        <div class="music-body">
+        <p>Opening with A Combination of Various Factors and Fireflies, which contrast a relentless push forward with the melancholy of future loss. Transitioning into Saskatchewan and Bread and Circus, both ponderous despite their differences, the pair evoke Boards of Canada's tenebrous nature. Moving into more upbeat territory, Nightlight through Freestyle bring fun and a little dancing or at least head bopping. Finally, moving into the last quarter the remaining songs are gentle and bring Coastlines to a close. </p>
+        <p>Interspersed throughout are short songs, ideas, and pieces that fit with the rest. Some of my favorite pieces are these small ones. While I love all my music, Coastlines came together in such a way that has spoken to me throughout. </p>
+        
+      </div>
+     
+    </section>
+
+    <div class="scroll-divider" role="separator" aria-hidden="true"></div>
+
+    <!-- ── A PATH UNCLEAR ─────────────────────────────── -->
+    <section class="music-section">
+      <h2>A Path Unclear</h2>
+      <div class="music-intro">
+        <p class="intro-text">The second Thousand Gardens album, A Path Unclear, is an evolution of sound compared to Overgrowth. Experimenting and pushing my music to see what I was able to do, it also includes a number of what I consider proper songs, such as Self Reflection and Airlock Failure. More dynamic than Overgrowth, I encountered my first situation where I heard a song I'd created and thought "wow, how did I do that?" A Path Unclear tells a story of friends in an unreal land as they as explore, adventure, and return home.</p>
+        <figure>
+          <img src="images/path_cover.jpg" alt="Cover art for A Path Unclear by Thousand Gardens" />
+          <figcaption>Released May 2024</figcaption>
+        </figure>
+      </div>
+      <div class="music-body">
+      <p>An initial limited run of 100, A Path Unclear also exists on CD. As of March 2026, copies are still available for sale.</p></div>
+    </section>
+
+    <div class="scroll-divider" role="separator" aria-hidden="true"></div>
+
+    <!-- ── SINGLES PRE 2025 ───────────────────────────── -->
+    <section class="music-section">
+      <h2>Singles pre 2025</h2>
+      <div class="music-intro">
+        <p class="intro-text">Prior to 2025, I released 5 singles which didn't feel like they fit well with other work. Plovers was the first track I completed as Thousand Gardens, and while it's clearly an early work, I still appreciate it as an indicator for how my early sound was developing. It's more ambient-styled than much of my later work but grows and gently evolves.</p>
+        <figure>
+          <img src="images/singles.png" alt="Singles artwork" />
+          <figcaption>Various singles, pre-2025</figcaption>
+        </figure>
+      </div>
+      <div class="music-body">
+        <p>Sunburst includes a B-side, with the main track Sunburst being evocative and upbeat, while "Walking Through" is darker in style with a shuffling rhythm underpinning the melodies. While both are songs I like, they didn't fit into the general theme of Overgrowth and so came out as a single shortly after.</p>
+        <p>Palomino was similar, as the vocals pushed it out of "A Path Unclear" and while the swirling melodies and broken beat may have fit, ultimately it didn't make the cut.</p>
+        <p>Finally, A Little Scared Dub was a personal challenge as a Halloween song. One of my favorite albums has been the series of EPs from Tino's Breaks, a Jack Danger project (of Meat Beat Manifesto), and his Halloween Dub album is a clear influence. I was particularly happy with truly all aspects of this song; it's dubby, it's spooky, full of samples that fit together with the spooky vibe. And the cover pulls it together for me, a picture I took that Halloween season that I modified. Best part is that it hasn't been taken down from streaming etc despite the samples.</p>
+      </div>
+    </section>
+
+    <div class="scroll-divider" role="separator" aria-hidden="true"></div>
+
+    <!-- ── OVERGROWTH ─────────────────────────────────── -->
+    <section class="music-section">
+      <h2>Overgrowth</h2>
+      <div class="music-intro">
+        <p class="intro-text">The first Thousand Gardens album, Overgrowth explores the ideas behind the unexpected pushing forth in unknown ways. It's not as experimental as that, though, as it references early IDM influences throughout with tracks ranging from mellow (Zizia, Orpine) to harsh (Overgrowth).</p>
+        <figure>
+          <img src="images/overgrowth_cover.jpg" alt="Cover art for Overgrowth by Thousand Gardens" />
+          <figcaption>Released September 2023</figcaption>
+        </figure>
+      </div>
+      <div class="music-body">
+        <p>Early experiments in sounds turned into songs and tracks; samples cut up or used straight while keeping instrumental electronic interesting.</p>
+      </div>
+    </section>
+
   </main>
 
   <script>
+    // Sticky header shadow
     const siteHeader = document.querySelector('.site-header');
     window.addEventListener('scroll', () => {
       siteHeader.classList.toggle('scrolled', window.scrollY > 10);
     }, { passive: true });
+
+    // Scroll-triggered dividers
+    const dividers = document.querySelectorAll('.scroll-divider');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.5 });
+
+    dividers.forEach(d => observer.observe(d));
   </script>
-  <script src="https://www.webringthemusic.info/embed.js"></script>
+
 </body>
 </html>
