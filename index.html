@@ -43,7 +43,6 @@
       z-index: 100;
       background-color: var(--bg);
       animation: fadeDown 0.8s ease both;
-      /* subtle shadow appears on scroll via JS class */
       transition: box-shadow 0.3s ease;
     }
 
@@ -53,25 +52,8 @@
 
     /* ── HEADER ─────────────────────────────────────── */
     header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 2rem 1.5rem 0;
-    }
-
-    .header-spacer {
-      flex: 1;
-    }
-
-    .header-title {
       text-align: center;
-    }
-
-    .header-actions {
-      flex: 1;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
+      padding: 2rem 1.5rem 0;
     }
 
     h1 {
@@ -153,7 +135,7 @@
       height: 1px;
       background: var(--accent);
       opacity: 0;
-      transition: opacity 0.8s ease;
+      transition: opacity 0.3s ease;
     }
 
     nav a:hover {
@@ -185,60 +167,45 @@
       animation: fadeUp 0.9s 0.3s ease both;
     }
 
-    /* ── FIGURE / IMAGE ──────────────────────────────── */
-    figure {
-      margin: 0 0 2.8rem;
-    }
-
-    .image-placeholder {
-      width: 100%;
-      background-color: var(--bg-light);
-      border: 1px solid var(--divider);
+    /* ── FRIENDS LIST ────────────────────────────────── */
+    .friends-list {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--muted);
-      font-family: 'Comfortaa', cursive;
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
-      overflow: hidden;
-      position: relative;
+      flex-direction: column;
+      gap: 0;
     }
 
-    /* swap this <div> for a real <img> when ready */
-    .image-placeholder img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+    .friend-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--divider);
     }
 
-    figcaption {
-      margin-top: 0.85rem;
-      font-family: 'Lora', Georgia, serif;
-      font-style: italic;
-      font-size: 0.88rem;
-      color: var(--muted);
-      text-align: center;
-      line-height: 1.55;
-    }
-
-    /* ── DESCRIPTIVE TEXT ────────────────────────────── */
-    .description {
+    .friend-entry:first-child {
       border-top: 1px solid var(--divider);
-      padding-top: 2.4rem;
     }
 
-    .description p {
+    .friend-entry p {
       font-size: 1.05rem;
       line-height: 1.85;
       color: var(--text);
       max-width: 68ch;
-      margin: 0 auto 1.4rem;
     }
 
-    .description p:last-child {
-      margin-bottom: 0;
+    .friend-entry a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .friend-entry a:hover {
+      color: var(--text);
+    }
+
+    .friend-link {
+      display: inline-block;
+      margin-top: 0.6rem;
+      font-family: 'Comfortaa', cursive;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
     }
 
     /* ── ANIMATIONS ──────────────────────────────────── */
@@ -264,10 +231,7 @@
 
   <div class="site-header">
     <header>
-      <div class="header-title">
-        <h1><a href="/">Thousand Gardens</a></h1>
-      </div>
-
+      <h1><a href="/">Thousand Gardens</a></h1>
     </header>
 
     <div class="social-icons" aria-label="Social media links">
