@@ -242,6 +242,12 @@
       margin-bottom: 0;
     }
 
+    /* ── STRIPE BUTTON ───────────────────────────────── */
+    .stripe-float {
+      float: right;
+      margin: 0 0 1.5rem 2rem;
+    }
+
     /* ── ANIMATIONS ──────────────────────────────────── */
     @keyframes fadeDown {
       from { opacity: 0; transform: translateY(-14px); }
@@ -268,7 +274,6 @@
       <div class="header-title">
         <h1><a href="/">Thousand Gardens</a></h1>
       </div>
-
     </header>
 
     <div class="social-icons" aria-label="Social media links">
@@ -304,6 +309,13 @@
     </figure>
 
     <section class="description" aria-label="Image description">
+      <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+      <div class="stripe-float">
+        <stripe-buy-button
+          buy-button-id="buy_btn_1TAYAbGwb1qpOj2Jio99O2gL"
+          publishable-key="pk_live_51PQIbiGwb1qpOj2JbAcO2O9LgY6IjyU6GtmI3CD5LsT2T5DKLnBPQINTIH62eCrmo0AVsgAV2TPpjAspF1Acvu5K00HV5U223S"
+        ></stripe-buy-button>
+      </div>
       <p>
         Coastlines is available on Bandcamp and all streaming services.
       </p>
@@ -320,6 +332,6 @@
       siteHeader.classList.toggle('scrolled', window.scrollY > 10);
     }, { passive: true });
   </script>
-<script src="https://www.webringthemusic.info/embed.js"></script>
+  <script src="https://www.webringthemusic.info/embed.js"></script>
 </body>
 </html>
