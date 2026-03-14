@@ -571,13 +571,6 @@
       <p>
         An homage to vintage IDM, following in the footsteps of Boards of Canada, Tycho, Future Sound of London, Plaid, and more. 100% human made.
       </p>
-      <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-      <div class="stripe-float">
-        <stripe-buy-button
-          buy-button-id="buy_btn_1TAYAbGwb1qpOj2Jio99O2gL"
-          publishable-key="pk_live_51PQIbiGwb1qpOj2JbAcO2O9LgY6IjyU6GtmI3CD5LsT2T5DKLnBPQINTIH62eCrmo0AVsgAV2TPpjAspF1Acvu5K00HV5U223S"
-        ></stripe-buy-button>
-      </div>
     </section>
 
   </main>
@@ -622,6 +615,14 @@
       <span></span>
     </div>
     <div id="npTrackList"></div>
+  </div>
+
+  <div class="stripe-float" style="max-width:900px; margin:0 auto; padding:0 1.5rem 3rem; display:flex; justify-content:flex-end;">
+    <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+    <stripe-buy-button
+      buy-button-id="buy_btn_1TAYAbGwb1qpOj2Jio99O2gL"
+      publishable-key="pk_live_51PQIbiGwb1qpOj2JbAcO2O9LgY6IjyU6GtmI3CD5LsT2T5DKLnBPQINTIH62eCrmo0AVsgAV2TPpjAspF1Acvu5K00HV5U223S"
+    ></stripe-buy-button>
   </div>
 
   <audio id="npAudio" preload="none"></audio>
@@ -774,13 +775,6 @@
       buildTrackList();
     })();
   </script>
-<script async src="https://js.stripe.com/v3/buy-button.js"></script>
-      <div class="stripe-float">
-        <stripe-buy-button
-          buy-button-id="buy_btn_1TAYAbGwb1qpOj2Jio99O2gL"
-          publishable-key="pk_live_51PQIbiGwb1qpOj2JbAcO2O9LgY6IjyU6GtmI3CD5LsT2T5DKLnBPQINTIH62eCrmo0AVsgAV2TPpjAspF1Acvu5K00HV5U223S"
-        ></stripe-buy-button>
-      </div>
   <script>
     const siteHeader = document.querySelector('.site-header');
     window.addEventListener('scroll', () => {
