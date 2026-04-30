@@ -763,3 +763,795 @@
   <script src="https://www.webringthemusic.info/embed.js"></script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thousand Gardens</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg:       #2a2a2a;
+      --bg-light: #333333;
+      --text:     #f0ede8;
+      --muted:    #a09a92;
+      --accent:   #c8b89a;
+      --divider:  #444444;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Lora', Georgia, serif;
+      min-height: 100vh;
+    }
+
+    /* ── STICKY SITE HEADER ──────────────────────────── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--bg);
+      animation: fadeDown 0.8s ease both;
+      /* subtle shadow appears on scroll via JS class */
+      transition: box-shadow 0.3s ease;
+    }
+
+    .site-header.scrolled {
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.45);
+    }
+
+    /* ── HEADER ─────────────────────────────────────── */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem 1.5rem 0;
+    }
+
+    .header-spacer {
+      flex: 1;
+    }
+
+    .header-title {
+      flex: 1;
+      text-align: center;
+    }
+
+    .header-actions {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    h1 {
+      font-family: 'Comfortaa', cursive;
+      font-weight: 700;
+      font-size: clamp(2rem, 6vw, 4rem);
+      letter-spacing: 0.04em;
+      color: var(--text);
+      line-height: 1.1;
+    }
+
+    h1 a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    h1 a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+
+    /* ── SOCIAL ICONS ────────────────────────────────── */
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.1rem;
+      padding: 0.9rem 1.5rem 0.2rem;
+    }
+
+    .social-icons a {
+      color: var(--muted);
+      font-size: 1.15rem;
+      text-decoration: none;
+      transition: color 0.25s ease, transform 0.2s ease;
+      display: flex;
+      align-items: center;
+    }
+
+    .social-icons a:hover {
+      color: var(--text);
+      transform: translateY(-2px);
+    }
+
+    .social-icons a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: clamp(1.2rem, 4vw, 3rem);
+      padding: 1.2rem 1.5rem 1.4rem;
+    }
+
+    nav a {
+      font-family: 'Comfortaa', cursive;
+      font-weight: 400;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: lowercase;
+      color: var(--muted);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 3px;
+      transition: color 0.25s ease;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    nav a:hover {
+      color: var(--text);
+    }
+
+    nav a:hover::after {
+      opacity: 1;
+    }
+
+    nav a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+
+    /* ── DIVIDER ─────────────────────────────────────── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--divider);
+    }
+
+    /* ── MAIN CONTENT ────────────────────────────────── */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 5rem;
+      animation: fadeUp 0.9s 0.3s ease both;
+    }
+
+    /* ── FIGURE / IMAGE ──────────────────────────────── */
+    figure {
+      margin: 0 0 2.8rem;
+    }
+
+    .image-placeholder {
+      width: 100%;
+      background-color: var(--bg-light);
+      border: 1px solid var(--divider);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-family: 'Comfortaa', cursive;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* swap this <div> for a real <img> when ready */
+    .image-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    figcaption {
+      margin-top: 0.85rem;
+      font-family: 'Lora', Georgia, serif;
+      font-style: italic;
+      font-size: 0.88rem;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.55;
+    }
+
+    /* ── DESCRIPTIVE TEXT ────────────────────────────── */
+    .description {
+      border-top: 1px solid var(--divider);
+      padding-top: 2.4rem;
+    }
+
+    .description p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text);
+      max-width: 68ch;
+      margin: 0 auto 1.4rem;
+    }
+
+    .description p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ── TIP BUTTON ──────────────────────────────────── */
+    .tip-btn {
+      position: fixed;
+      top: 1rem;
+      right: 1.5rem;
+      z-index: 200;
+      font-family: 'Comfortaa', cursive;
+      font-size: 0.625rem;
+      letter-spacing: 0.1em;
+      text-transform: lowercase;
+      color: var(--muted);
+      background: var(--bg);
+      border: 1px solid var(--divider);
+      border-radius: 2px;
+      padding: 0.4rem 0.8rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+      display: inline-block;
+    }
+
+    .tip-btn:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* ── ANIMATIONS ──────────────────────────────────── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 480px) {
+      nav {
+        gap: 1rem;
+      }
+    }
+    /* ── MUSIC PLAYER ────────────────────────────────── */
+    .player-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.5rem 5rem;
+    }
+
+    .player-heading {
+      font-family: 'Comfortaa', cursive;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: lowercase;
+      color: var(--muted);
+      padding: 2rem 0 1rem;
+      border-top: 1px solid var(--divider);
+    }
+
+    /* Now-playing bar */
+    .np-bar {
+      background: var(--bg-light);
+      border: 1px solid var(--divider);
+      border-radius: 2px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+
+    .np-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .np-btn-icon {
+      background: none;
+      border: none;
+      color: var(--text);
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      opacity: 0.6;
+      transition: opacity 0.15s;
+    }
+
+    .np-btn-icon:hover { opacity: 1; }
+
+    .np-btn-play {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: none;
+      color: var(--bg);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s, transform 0.1s;
+      flex-shrink: 0;
+    }
+
+    .np-btn-play:hover { background: var(--text); transform: scale(1.05); }
+
+    .np-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .np-title-text {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 0.9rem;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .np-idle-text {
+      font-style: italic;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .np-progress-wrap {
+      flex: 2;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .np-time {
+      font-size: 0.7rem;
+      color: var(--muted);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+      min-width: 32px;
+      font-family: 'Comfortaa', cursive;
+    }
+
+    .np-progress-bar {
+      flex: 1;
+      height: 3px;
+      background: var(--divider);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .np-progress-fill {
+      height: 100%;
+      background: var(--accent);
+      width: 0%;
+      transition: width 0.1s linear;
+      pointer-events: none;
+    }
+
+    .np-progress-bar:hover .np-progress-fill { background: var(--text); }
+
+    .np-volume {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .np-volume-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 64px;
+      height: 3px;
+      background: var(--divider);
+      outline: none;
+      cursor: pointer;
+    }
+
+    .np-volume-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+    }
+
+    /* Track list */
+    .np-tracklist-header {
+      display: grid;
+      grid-template-columns: 28px 1fr 56px;
+      gap: 12px;
+      padding: 8px 12px;
+      font-family: 'Comfortaa', cursive;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: lowercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--divider);
+      margin-bottom: 2px;
+    }
+
+    .np-track-row {
+      display: grid;
+      grid-template-columns: 28px 1fr 56px;
+      gap: 12px;
+      padding: 9px 12px;
+      align-items: center;
+      cursor: pointer;
+      transition: background 0.15s;
+      border-radius: 2px;
+    }
+
+    .np-track-row:hover { background: var(--bg-light); }
+
+    .np-track-row.active { background: var(--bg-light); }
+
+    .np-track-row.active .np-track-title { color: var(--accent); }
+
+    .np-track-num {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+      font-family: 'Comfortaa', cursive;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .np-num-label {
+      transition: opacity 0.15s;
+    }
+
+    .np-track-row.active .np-num-label { opacity: 0; }
+
+    .np-playing-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      height: 14px;
+      position: absolute;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+
+    .np-track-row.active .np-playing-indicator { opacity: 1; }
+
+    .np-bar-anim {
+      width: 3px;
+      background: var(--accent);
+      border-radius: 1px;
+      animation: npBounce 0.8s ease-in-out infinite alternate;
+    }
+
+    .np-bar-anim:nth-child(1) { height: 8px;  animation-delay: 0s; }
+    .np-bar-anim:nth-child(2) { height: 14px; animation-delay: 0.15s; }
+    .np-bar-anim:nth-child(3) { height: 6px;  animation-delay: 0.3s; }
+
+    .paused .np-bar-anim { animation-play-state: paused; }
+
+    @keyframes npBounce {
+      from { transform: scaleY(0.4); }
+      to   { transform: scaleY(1); }
+    }
+
+    .np-track-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 0.9rem;
+      color: var(--text);
+      transition: color 0.15s;
+    }
+
+    .np-track-row:hover .np-track-title { color: var(--text); }
+
+    .np-track-duration {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      font-family: 'Comfortaa', cursive;
+    }
+
+
+    @media (max-width: 600px) {
+      .np-progress-wrap { display: none; }
+      .np-volume { display: none; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <a class="tip-btn" href="https://ko-fi.com/thousandgardens" target="_blank" rel="noopener">send me a tip</a>
+
+  <div class="site-header">
+    <header>
+      <div class="header-title">
+        <h1><a href="/">Thousand Gardens</a></h1>
+      </div>
+    </header>
+
+    <div class="social-icons" aria-label="Social media links">
+      <a class="no-underline" target="_blank" href="https://threads.net/@thousandgardensmusic" aria-label="Threads"><i class="fa-brands fa-threads" aria-hidden="true"></i></a>
+      <a class="no-underline" target="_blank" href="https://www.instagram.com/thousandgardensmusic/" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+      <a class="no-underline" target="_blank" href="https://bsky.app/profile/thousandgardens.bsky.social" aria-label="Bluesky"><i class="fa-brands fa-bluesky" aria-hidden="true"></i></a>
+      <a class="no-underline" target="_blank" href="https://www.tiktok.com/@thousandgardens" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+      <a class="no-underline" target="_blank" href="https://thousandgardens.bandcamp.com/" aria-label="Bandcamp"><i class="fa-brands fa-bandcamp" aria-hidden="true"></i></a>
+      <a class="no-underline" target="_blank" href="https://music.youtube.com/channel/UCZRlp-3S4pdU47fnt7bLfew" aria-label="YouTube Music"><i class="fa-brands fa-square-youtube" aria-hidden="true"></i></a>
+      <a class="no-underline" target="_blank" href="https://open.spotify.com/artist/1vKAyUHFXZfhrLRl1ZVKgR?si=ioAOCr7wTKSFLFVZ1kW8Hg" aria-label="Spotify"><i class="fa-brands fa-spotify" aria-hidden="true"></i></a>
+      <a class="no-underline" target="_blank" href="https://music.apple.com/gb/artist/thousand-gardens/1708625359" aria-label="Apple Music"><i class="fa-brands fa-apple" aria-hidden="true"></i></a>
+    </div>
+
+    <nav aria-label="Main navigation">
+      <a href="music.html">music</a>
+      <a href="friends.html">friends</a>
+      <a href="industry.html">industry</a>
+      <a href="related.html">related</a>
+    </nav>
+
+    <div class="divider" role="separator"></div>
+  </div>
+
+  <main>
+
+    <figure>
+      <div class="image-placeholder" role="img" aria-label="Featured image placeholder">
+        <img src="images/coastlinescover.jpg" width="2000" height="2000" alt="Cover art for the music album Coastlines by Thousand Gardens" />
+      </div>
+      <figcaption>
+        Coastlines, the third album from Thousand Gardens. June 2025.
+      </figcaption>
+    </figure>
+
+    <section class="description" aria-label="Image description">
+      
+      <p>
+        Coastlines is available on Bandcamp and all streaming services.
+      </p>
+      <p>
+        An homage to vintage IDM, following in the footsteps of Boards of Canada, Tycho, Future Sound of London, Plaid, and more. 100% human made.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- ── MUSIC PLAYER ──────────────────────────────── -->
+  <div class="player-wrap">
+    <div class="player-heading">coastlines — listen</div>
+
+    <div class="np-bar">
+      <div class="np-controls">
+        <button class="np-btn-icon" title="Previous" onclick="npPrev()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
+        </button>
+        <button class="np-btn-play" id="npBtnPlay" onclick="npTogglePlay()">
+          <svg id="npIconPlay" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          <svg id="npIconPause" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+        <button class="np-btn-icon" title="Next" onclick="npNext()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+        </button>
+      </div>
+      <div class="np-info">
+        <div class="np-title-text" id="npTitleText"><span class="np-idle-text">select a track to play</span></div>
+      </div>
+      <div class="np-progress-wrap">
+        <span class="np-time" id="npCurrent">0:00</span>
+        <div class="np-progress-bar" id="npProgressBar" onclick="npSeek(event)">
+          <div class="np-progress-fill" id="npProgressFill"></div>
+        </div>
+        <span class="np-time" id="npDuration">0:00</span>
+      </div>
+      <div class="np-volume">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="color:var(--muted)"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+        <input type="range" class="np-volume-slider" id="npVolumeSlider" min="0" max="1" step="0.02" value="1" oninput="npSetVolume(this.value)">
+      </div>
+    </div>
+
+    <div class="np-tracklist-header">
+      <span>#</span>
+      <span>title</span>
+      <span style="text-align:right">duration</span>
+    </div>
+    <div id="npTrackList"></div>
+  </div>
+
+
+
+  <audio id="npAudio" preload="none"></audio>
+
+  <script>
+    (function () {
+      const BASE = 'https://f005.backblazeb2.com/file/thousandgardens/coastlines/';
+      const tracks = [
+        { num: 1,  title: 'Anew',                             file: '1 - Thousand Gardens - Anew.mp3' },
+        { num: 2,  title: 'A Combination of Various Factors', file: '2 - Thousand Gardens - A Combination of Various Factors.mp3' },
+        { num: 3,  title: 'Fireflies',                        file: '3 - Thousand Gardens - Fireflies.mp3' },
+        { num: 4,  title: 'Centennial',                       file: '4 - Thousand Gardens - Centennial.mp3' },
+        { num: 5,  title: 'Saskatchewan',                     file: '5 - Thousand Gardens - Saskatchewan.mp3' },
+        { num: 6,  title: 'Bread and Circus',                 file: '6 - Thousand Gardens - Bread and Circus.mp3' },
+        { num: 7,  title: 'Colossus',                         file: '7 - Thousand Gardens - Colossus.mp3' },
+        { num: 8,  title: 'Nightlight',                       file: '8 - Thousand Gardens - Nightlight.mp3' },
+        { num: 9,  title: "Time's Up",                        file: "9 - Thousand Gardens - Time's Up.mp3" },
+        { num: 10, title: 'Freestyle',                        file: '10 - Thousand Gardens - Freestyle.mp3' },
+        { num: 11, title: 'Falling Leaves',                   file: '11 - Thousand Gardens - Falling Leaves.mp3' },
+        { num: 12, title: 'Splashing Stream',                 file: '12 - Thousand Gardens - Splashing Stream.mp3' },
+        { num: 13, title: 'Apples',                           file: '13 - Thousand Gardens - Apples.mp3' },
+        { num: 14, title: 'Rest at Dawn',                     file: '14 - Thousand Gardens - Rest at Dawn.mp3' },
+      ];
+
+      const audio = document.getElementById('npAudio');
+      let currentIndex = -1;
+      let isPlaying = false;
+
+      function encodeFilename(f) {
+        return f.split('').map(c => {
+          if (c === "'") return "%27";
+          if (c === ' ') return '%20';
+          return encodeURIComponent(c).replace(/%20/g, '%20');
+        }).join('');
+      }
+
+      function buildTrackList() {
+        const container = document.getElementById('npTrackList');
+        tracks.forEach((t, i) => {
+          const url = BASE + encodeFilename(t.file);
+          const row = document.createElement('div');
+          row.className = 'np-track-row';
+          row.id = `np-track-${i}`;
+          row.innerHTML = `
+            <div class="np-track-num">
+              <span class="np-num-label">${t.num}</span>
+              <div class="np-playing-indicator paused">
+                <div class="np-bar-anim"></div>
+                <div class="np-bar-anim"></div>
+                <div class="np-bar-anim"></div>
+              </div>
+            </div>
+            <div class="np-track-title">${t.title}</div>
+            <div class="np-track-duration" id="np-dur-${i}">—</div>
+          `;
+          row.addEventListener('click', () => npLoad(i, true));
+          container.appendChild(row);
+
+          const tmp = new Audio();
+          tmp.preload = 'metadata';
+          tmp.src = url;
+          tmp.addEventListener('loadedmetadata', () => {
+            const el = document.getElementById(`np-dur-${i}`);
+            if (el) el.textContent = npFmt(tmp.duration);
+          });
+        });
+      }
+
+      function npLoad(index, autoplay = false) {
+        if (currentIndex >= 0) {
+          const prev = document.getElementById(`np-track-${currentIndex}`);
+          if (prev) {
+            prev.classList.remove('active');
+            prev.querySelector('.np-playing-indicator').classList.add('paused');
+          }
+        }
+        currentIndex = index;
+        const t = tracks[index];
+        audio.src = BASE + encodeFilename(t.file);
+        audio.load();
+        document.getElementById('npTitleText').textContent = `${t.num}. ${t.title}`;
+        document.getElementById('npProgressFill').style.width = '0%';
+        document.getElementById('npCurrent').textContent = '0:00';
+        document.getElementById('npDuration').textContent = '—';
+        const row = document.getElementById(`np-track-${index}`);
+        if (row) row.classList.add('active');
+        if (autoplay) audio.play().then(() => npSetPlaying(true)).catch(() => {});
+      }
+
+      function npSetPlaying(val) {
+        isPlaying = val;
+        document.getElementById('npIconPlay').style.display  = val ? 'none'  : 'block';
+        document.getElementById('npIconPause').style.display = val ? 'block' : 'none';
+        if (currentIndex >= 0) {
+          const ind = document.getElementById(`np-track-${currentIndex}`)?.querySelector('.np-playing-indicator');
+          if (ind) ind.classList.toggle('paused', !val);
+        }
+      }
+
+      window.npTogglePlay = function () {
+        if (currentIndex === -1) { npLoad(0, true); return; }
+        if (isPlaying) { audio.pause(); } else { audio.play().then(() => npSetPlaying(true)).catch(() => {}); }
+      };
+
+      window.npPrev = function () {
+        if (audio.currentTime > 3) { audio.currentTime = 0; return; }
+        npLoad(currentIndex <= 0 ? tracks.length - 1 : currentIndex - 1, isPlaying);
+      };
+
+      window.npNext = function () {
+        npLoad((currentIndex + 1) % tracks.length, isPlaying);
+      };
+
+      window.npSeek = function (e) {
+        if (!audio.duration) return;
+        const rect = e.currentTarget.getBoundingClientRect();
+        audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
+      };
+
+      window.npSetVolume = function (v) { audio.volume = v; };
+
+      function npFmt(s) {
+        if (isNaN(s)) return '—';
+        return `${Math.floor(s / 60)}:${Math.floor(s % 60).toString().padStart(2, '0')}`;
+      }
+
+      audio.addEventListener('timeupdate', () => {
+        if (!audio.duration) return;
+        document.getElementById('npProgressFill').style.width = (audio.currentTime / audio.duration * 100) + '%';
+        document.getElementById('npCurrent').textContent = npFmt(audio.currentTime);
+      });
+
+      audio.addEventListener('loadedmetadata', () => {
+        document.getElementById('npDuration').textContent = npFmt(audio.duration);
+        if (currentIndex >= 0) {
+          const el = document.getElementById(`np-dur-${currentIndex}`);
+          if (el) el.textContent = npFmt(audio.duration);
+        }
+      });
+
+      audio.addEventListener('ended', () => { npSetPlaying(false); window.npNext(); });
+      audio.addEventListener('play',  () => npSetPlaying(true));
+      audio.addEventListener('pause', () => npSetPlaying(false));
+
+      buildTrackList();
+    })();
+  </script>
+  <script>
+    const siteHeader = document.querySelector('.site-header');
+    window.addEventListener('scroll', () => {
+      siteHeader.classList.toggle('scrolled', window.scrollY > 10);
+    }, { passive: true });
+  </script>
+  <script src="https://www.webringthemusic.info/embed.js"></script>
+</body>
+</html>
