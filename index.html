@@ -415,7 +415,7 @@
     /* Track list */
     .np-tracklist-header {
       display: grid;
-      grid-template-columns: 28px 1fr 56px 32px;
+      grid-template-columns: 28px 1fr 56px;
       gap: 12px;
       padding: 8px 12px;
       font-family: 'Comfortaa', cursive;
@@ -429,7 +429,7 @@
 
     .np-track-row {
       display: grid;
-      grid-template-columns: 28px 1fr 56px 32px;
+      grid-template-columns: 28px 1fr 56px;
       gap: 12px;
       padding: 9px 12px;
       align-items: center;
@@ -499,21 +499,6 @@
       font-family: 'Comfortaa', cursive;
     }
 
-    .np-track-download {
-      display: flex;
-      justify-content: center;
-    }
-
-    .np-track-download a {
-      color: var(--muted);
-      text-decoration: none;
-      opacity: 0;
-      transition: opacity 0.15s, color 0.15s;
-      display: flex;
-      align-items: center;
-    }
-
-    .np-track-row:hover .np-track-download a { opacity: 1; color: var(--accent); }
 
     @media (max-width: 600px) {
       .np-progress-wrap { display: none; }
@@ -612,7 +597,6 @@
       <span>#</span>
       <span>title</span>
       <span style="text-align:right">duration</span>
-      <span></span>
     </div>
     <div id="npTrackList"></div>
   </div>
@@ -677,11 +661,6 @@
             </div>
             <div class="np-track-title">${t.title}</div>
             <div class="np-track-duration" id="np-dur-${i}">—</div>
-            <div class="np-track-download">
-              <a href="${url}" download="${t.file}" title="Download" onclick="event.stopPropagation()">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 2V5h2v6h1.17L12 13.17 9.83 11H11zm-6 7h14v2H5v-2z"/></svg>
-              </a>
-            </div>
           `;
           row.addEventListener('click', () => npLoad(i, true));
           container.appendChild(row);
